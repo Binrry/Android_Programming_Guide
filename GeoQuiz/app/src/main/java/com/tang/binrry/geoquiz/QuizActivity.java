@@ -5,33 +5,125 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
 
     private Button mbtn_true;
     private Button mbtn_false;
+    //Unit Two Begin
+    private Button mNextButton;
+    private TextView mQuestionTextView;
+    private Question[] mQuestionBank = new Question[]{
+            new Question(R.string.question_australia,true),
+            new Question(R.string.question_oceans,true),
+            new Question(R.string.question_mideast,false),
+            new Question(R.string.question_africa,false),
+            new Question(R.string.question_americas,true),
+            new Question(R.string.question_asia,true)
+    };
+    private int mCurrentIndex = 0;
+    //Unit Two End
+    //Unit Two Challenge Begin
+    private Button mbtn_pre;
+    private ImageButton mimg_pre;
+    private ImageButton mimg_next;
+    // Unit Two Challenge End
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        //Unit Two Begin
+        mQuestionTextView=findViewById(R.id.question_textview);
+        updateQuestion();
+        mNextButton=findViewById(R.id.btn_next);
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex=(mCurrentIndex+1)%mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+        //Unit Two End
+
+        //Unit Two Challenge Begin
+        mbtn_pre=findViewById(R.id.btn_prev);
+        mbtn_pre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCurrentIndex==0) mCurrentIndex=mQuestionBank.length-1;
+                else mCurrentIndex=(mCurrentIndex-1)%mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+
+        mimg_pre=findViewById(R.id.img_prev);
+        mimg_pre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCurrentIndex==0) mCurrentIndex=mQuestionBank.length-1;
+                else mCurrentIndex=(mCurrentIndex-1)%mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+        mimg_next=findViewById(R.id.img_next);
+        mimg_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex=(mCurrentIndex+1)%mQuestionBank.length;
+                updateQuestion();
+            }
+        });
+        // Unit Two Challenge End
+
         mbtn_true=findViewById(R.id.btn_true);
         mbtn_true.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(QuizActivity.this,R.string.correct_toast,Toast.LENGTH_SHORT).show();
+                //Unit Two Begin Toast.makeText(QuizActivity.this,R.string.correct_toast,Toast.LENGTH_SHORT).show();
+                checkAnswer(true);
+                //Unit Two End
             }
         });
         mbtn_false=findViewById(R.id.btn_false);
         mbtn_false.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*Unit Two Begin
               //.setGravity(Gravity.TOP,10,10);
                 Toast toast=Toast.makeText(QuizActivity.this,R.string.incorrect_toast,Toast.LENGTH_SHORT);
-                //Challenge
+                //Unit One Challenge
                 toast.setGravity(Gravity.TOP,0,0);
                 toast.show();
+                */
+                checkAnswer(false);
+                //Unit Two End
             }
         });
     }
+
+    //Unit Two Begin
+    private void updateQuestion() {
+        int question=mQuestionBank[mCurrentIndex].getTextResId();
+        mQuestionTextView.setText(question);
+    }
+    private void checkAnswer(boolean userPress)
+    {
+        boolean answerTrue=mQuestionBank[mCurrentIndex].isAnswerTrue();
+        int messageResId=0;
+        if(userPress==answerTrue)
+        {
+            messageResId=R.string.correct_toast;
+        }
+        else
+        {
+            messageResId=R.string.incorrect_toast;
+        }
+        Toast.makeText(this,messageResId,Toast.LENGTH_SHORT).show();
+    }
+    //Unit Two End
 }

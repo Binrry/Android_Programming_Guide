@@ -7,13 +7,13 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".QuizActivity">
-
+<!---->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/question_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="24dp"
-        android:text="@string/question_text" />
+         />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -31,5 +31,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/false_botton" />
+
     </LinearLayout>
+    <!-- Unit Two Begin-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pre_botton"
+            android:drawableLeft="@drawable/arrow_left"
+            android:drawablePadding="4dp"
+            />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawablePadding="4dp"
+            android:text="@string/next_botton" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/img_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/arrow_left"
+            />
+
+        <ImageButton
+            android:id="@+id/img_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right"
+            />
+    </LinearLayout>
+    <!-- Unit Two End-->
 </LinearLayout>
