@@ -1,6 +1,14 @@
 <resources>
     <!--<string name=""></string>-->
     <string name="app_name">GeoQuiz</string>
+
+    <!-- Unit Five Begin-->
+    <string name="warning_text">Are you sure you want to do this?</string>
+    <string name="show_answer_button">Show Answer</string>
+    <string name="cheat_button">Cheat!</string>
+    <string name="judgment_toast">Cheating is wrong!</string>
+    <!-- Unit Five End-->
+
     <!-- Unit Two Begin-->
     <string name="question_australia">Canberra is the capital of Australia.</string>
     <string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean.</string>
@@ -8,13 +16,14 @@
     <string name="question_africa">The source of the Nile River is in Egypt.</string>
     <string name="question_americas">The Amazon River is the longest river in the Americas.</string>
     <string name="question_asia">Lake Baikal is the world\'s oldest and deepest freshwater lake.</string>
-    <string name="next_botton">Next</string>
+    <string name="next_button">Next</string>
     <!-- Unit Two End-->
     <!-- Unit Two Challenge Begin-->
-    <string name="pre_botton">Prev</string>
+    <string name="pre_button">Prev</string>
     <!-- Unit Two Challenge End-->
-    <string name="true_botton">True</string>
-    <string name="false_botton">False</string>
+
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
 </resources>

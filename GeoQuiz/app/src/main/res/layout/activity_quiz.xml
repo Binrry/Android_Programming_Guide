@@ -24,13 +24,13 @@
             android:id="@+id/btn_true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/true_botton" />
+            android:text="@string/true_button" />
 
         <Button
             android:id="@+id/btn_false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/false_botton" />
+            android:text="@string/false_button" />
 
     </LinearLayout>
     <!-- Unit Two Begin-->
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/pre_botton"
+            android:text="@string/pre_button"
             android:drawableLeft="@drawable/arrow_left"
             android:drawablePadding="4dp"
             />
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="4dp"
-            android:text="@string/next_botton" />
+            android:text="@string/next_button" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -76,6 +76,24 @@
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_right"
             />
+
     </LinearLayout>
     <!-- Unit Two End-->
+
+    <!-- Unit Five Begin-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_cheat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="4dp"
+            android:text="@string/cheat_button" />
+    </LinearLayout>
+
+    <!-- Unit Five End-->
 </LinearLayout>

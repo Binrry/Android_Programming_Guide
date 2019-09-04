@@ -1,5 +1,8 @@
 package com.tang.binrry.geoquiz;
 
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +15,12 @@ import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
 
+    //Unit Five Begin
+    private Button mCheatButton;
+    private static final int sREQUEST_CODE_CHEAT = 0;
+    private static final String sKEY_CHEAT = "cheat";
+    private boolean[] mIsCheater={false,false,false,false,false,false};
+    //Unit Five End
 
     //Unit Three Begin
     private static final String sTAG="QuizActivity";
@@ -20,8 +29,10 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.i(sTAG,"onSaveInstanceState");
         outState.putInt(sKEY_INDEX,mCurrentIndex);
+        //Unit Five Challenge Begin
+        outState.putBoolean(sKEY_CHEAT,mIsCheater[mCurrentIndex]);
+        //Unit Five Challenge End
     }
     private boolean[] answered={false,false,false,false,false,false};
     private int sum=0,count=0;
@@ -130,10 +141,38 @@ public class QuizActivity extends AppCompatActivity {
         if(savedInstanceState!=null)
         {
             mCurrentIndex=savedInstanceState.getInt(sKEY_INDEX,0);
+            //Unit Five Challenge Begin
+            mIsCheater[mCurrentIndex]=savedInstanceState.getBoolean(sKEY_CHEAT,false);
+            // Unit Five Challenge End
         }
 
         //Unit Three End
+
+        //Unit Five Begin
+        mCheatButton=findViewById(R.id.btn_cheat);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+                Intent intent=CheatActivity.newIntent(QuizActivity.this,answerIsTrue);
+                startActivityForResult(intent,sREQUEST_CODE_CHEAT);
+            }
+        });
+        //Unit Five End
+
     }
+
+    //Unit Five Begin
+    protected void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        if(resultCode!=Activity.RESULT_OK) return;
+        if(requestCode==sREQUEST_CODE_CHEAT)
+        {
+            if(data==null) return;
+            mIsCheater[mCurrentIndex]=CheatActivity.wasAnswerShown(data);
+        }
+    }
+    //Unit Five End
 
     //Unit Three Challenge Begin
     private void btnforbid(boolean isanswer)
@@ -164,17 +203,22 @@ public class QuizActivity extends AppCompatActivity {
     {
         boolean answerTrue=mQuestionBank[mCurrentIndex].isAnswerTrue();
         int messageResId=0;
-        if(userPress==answerTrue)
+        //Unit Five and Challenge Begin
+        if(mIsCheater[mCurrentIndex])
         {
-            //Unit Three Challenge Begin
-            sum+=1;
-            messageResId=R.string.correct_toast;
-            //Unit Three Challenge End
+            messageResId=R.string.judgment_toast;
         }
-        else
-        {
-            messageResId=R.string.incorrect_toast;
+        else {
+            if (userPress == answerTrue) {
+                //Unit Three Challenge Begin
+                sum += 1;
+                messageResId = R.string.correct_toast;
+                //Unit Three Challenge End
+            } else {
+                messageResId = R.string.incorrect_toast;
+            }
         }
+        //Unit Five and Challenge End
         Toast.makeText(this,messageResId,Toast.LENGTH_SHORT).show();
         //Unit Three Challenge Begin
         answered[mCurrentIndex]=true;
