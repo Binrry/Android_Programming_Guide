@@ -12,8 +12,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
+//Unit One Begin
 public class QuizActivity extends AppCompatActivity {
+
+    //Unit Six Challenge Begin
+    private static final String sKEY_CHEATCOUNT = "cheatcount";
+    private static int sCheatCount=0;
+    //Unit Six Challenge End
 
     //Unit Five Begin
     private Button mCheatButton;
@@ -33,6 +38,10 @@ public class QuizActivity extends AppCompatActivity {
         //Unit Five Challenge Begin
         outState.putBoolean(sKEY_CHEAT,mIsCheater[mCurrentIndex]);
         //Unit Five Challenge End
+
+        //Unit Six Challenge Begin
+        outState.putInt(sKEY_CHEATCOUNT,sCheatCount);
+        //Unit Six Challenge End
     }
     private boolean[] answered={false,false,false,false,false,false};
     private int sum=0,count=0;
@@ -57,6 +66,7 @@ public class QuizActivity extends AppCompatActivity {
     private ImageButton mimg_pre;
     private ImageButton mimg_next;
     // Unit Two Challenge End
+
 
     private Button mbtn_true;
     private Button mbtn_false;
@@ -144,6 +154,10 @@ public class QuizActivity extends AppCompatActivity {
             //Unit Five Challenge Begin
             mIsCheater[mCurrentIndex]=savedInstanceState.getBoolean(sKEY_CHEAT,false);
             // Unit Five Challenge End
+
+            //Unit Six Challenge Begin
+            sCheatCount=savedInstanceState.getInt(sKEY_CHEATCOUNT,0);
+            // Unit Six Challenge End
         }
 
         //Unit Three End
@@ -153,9 +167,21 @@ public class QuizActivity extends AppCompatActivity {
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Unit Six Challenge Begin
+                if(sCheatCount<2)
+                {
+                    sCheatCount++;
+                    Toast.makeText(QuizActivity.this,"你还可以作弊 "+(3-sCheatCount)+" 次",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    mCheatButton.setEnabled(false);
+                }
+                //Unit Six Challenge End
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent=CheatActivity.newIntent(QuizActivity.this,answerIsTrue);
                 startActivityForResult(intent,sREQUEST_CODE_CHEAT);
+
             }
         });
         //Unit Five End

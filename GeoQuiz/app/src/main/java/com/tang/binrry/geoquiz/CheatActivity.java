@@ -1,16 +1,26 @@
 package com.tang.binrry.geoquiz;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+//Unit Five Begin
 public class CheatActivity extends AppCompatActivity {
+
+    //Unit Six Challenge Begin
+    private TextView mVersion_tv;
+    //Unit Six Challenge End
 
     private Button mbtn_showanswer;
     private TextView mAnswer_tv;
@@ -68,8 +78,35 @@ public class CheatActivity extends AppCompatActivity {
                     mAnswer_tv.setText(R.string.false_button);
                 }
                 setAnswerShownResult(true);
+
+                //Unit Six Begin
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                int cx=mbtn_showanswer.getWidth()/2;
+                int cy=mbtn_showanswer.getHeight()/2;
+                float radius=mbtn_showanswer.getWidth();
+                Animator anim=ViewAnimationUtils.createCircularReveal(mbtn_showanswer,cx,cy,radius,0);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                       // Toast.makeText(CheatActivity.this, "End", Toast.LENGTH_LONG).show();
+                        mbtn_showanswer.setVisibility(View.INVISIBLE);
+                    }
+                });
+                anim.start();
+                }
+                else
+                {
+                    mbtn_showanswer.setVisibility(View.INVISIBLE);
+                }
+                //Unit Six End
             }
         });
+        //Unit Six Challenge Begin
+        mVersion_tv=findViewById(R.id.tv_version);
+        mVersion_tv.setText("API Level "+Build.VERSION.SDK_INT);
+        //Unit Six Challenge End
     }
 
     private void setAnswerShownResult(boolean b) {
