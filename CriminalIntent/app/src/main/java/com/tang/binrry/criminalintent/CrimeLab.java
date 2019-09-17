@@ -1,5 +1,6 @@
 package com.tang.binrry.criminalintent;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,4 +45,6 @@ public class CrimeLab {
 
         return null;
     }
+
+
 }
