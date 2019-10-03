@@ -1,7 +1,9 @@
 package com.tang.binrry.criminalintent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -23,6 +26,11 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckbox;
+    //Unit Eleven Challenge Begin
+    private Button mbtn_to_first;
+    private Button mbtn_to_last;
+    //Unit Eleven Challenge End
+
     //Unit Ten Begin
     private static final String sARG_CRIME_ID = "crime_id";
     public static CrimeFragment newInstance(UUID crimeId)
@@ -86,6 +94,35 @@ public class CrimeFragment extends Fragment {
             }
         });
 
+//Unit Eleven Challenge Begin
+        mbtn_to_first=(Button) v.findViewById(R.id.btn_to_first);
+        if(mCrime.getTitle().endsWith("#0"))
+        {
+            mbtn_to_first.setEnabled(false);
+        }
+        mbtn_to_first.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=CrimePagerActivity.newIntent(getActivity(),CrimeLab.getUUID(0));
+                startActivity(intent);
+            }
+        });
+
+
+        mbtn_to_last=(Button) v.findViewById(R.id.btn_to_last);
+        if(mCrime.getTitle().endsWith("#99"))
+        {
+            mbtn_to_last.setEnabled(false);
+        }
+        mbtn_to_last.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=CrimePagerActivity.newIntent(getActivity(),CrimeLab.getUUID(99));
+                startActivity(intent);
+            }
+        });
+
+        //Unit Eleven Challenge End
         return v;
     }
 }

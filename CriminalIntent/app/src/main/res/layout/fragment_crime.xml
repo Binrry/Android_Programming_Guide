@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    >
     <!--Unit Seven Begin-->
     <TextView
         style="?android:listSeparatorTextViewStyle"
@@ -35,5 +35,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/crime_solved_label" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_to_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center|left"
+            android:gravity="center"
+            android:text="@string/btn_tofirst" />
+
+        <Button
+            android:id="@+id/btn_to_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_gravity="center|right"
+            android:text="@string/btn_tolast" />
+
+    </LinearLayout>
 
 </LinearLayout>

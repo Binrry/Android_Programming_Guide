@@ -9,6 +9,9 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
+    //Unit Eleven Challenge Begin
+    private static UUID[] sUUIDS;
+    //Unit Eleven Challenge End
     private List<Crime> mCrimes;
 
     public static CrimeLab get(Context context) {
@@ -19,10 +22,19 @@ public class CrimeLab {
         return sCrimeLab;
     }
 
+    public static UUID getUUID(int i)
+    {
+           return sUUIDS[i];
+    }
+
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
+        sUUIDS=new UUID[100];
         for (int i = 0; i < 100; i++) {
             Crime crime = new Crime();
+            //Unit Eleven Challenge Begin
+            sUUIDS[i]=crime.getId();
+            //Unit Eleven Challenge End
             crime.setTitle("Crime #" + i);
             crime.setSolved(i % 2 == 0);
             //Unit Eight Challenge Begin

@@ -5,4 +5,8 @@
     <string name="crime_title_label">Title</string>
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved</string>
+    <!--Unit Eleven Challenge Begin-->
+    <string name="btn_tolast">ToLast</string>
+    <string name="btn_tofirst">ToFirst</string>
+   <!-- <string name=""></string>-->
 </resources>
