@@ -3,11 +3,32 @@ package com.tang.binrry.criminalintent;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 //Unit Seven Begin
 public class Crime {
+
+    //Unit Twelve Challenge Begin
+    private int mhour;
+    private int mminute;
+    public int getHour() {
+        return mhour;
+    }
+
+    public void setHour(int mhour) {
+        this.mhour = mhour;
+    }
+
+    public int getMinute() {
+        return mminute;
+    }
+
+    public void setMinute(int minute) {
+        this.mminute = minute;
+    }
+    //Unit Twelve Challenge End
 
     private UUID mId;
     private String mTitle;
@@ -37,6 +58,10 @@ public class Crime {
         //"Monday,September 16,2019"
         mDateStr = dateFormat.format(mDate);
         //Unit Nine Challenge End
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(mDate);
+        mhour=calendar.get(Calendar.HOUR_OF_DAY);
+        mminute=calendar.get(Calendar.MINUTE);
     }
 
     public UUID getId() {
@@ -57,6 +82,11 @@ public class Crime {
 
     public void setDate(Date date) {
         mDate = date;
+        //Unit Twelve Begin
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE,MMMM dd,yyyy", Locale.ENGLISH);
+        //"Monday,September 16,2019"
+        mDateStr = dateFormat.format(mDate);
+        //Unit Twelve End
     }
 
     public boolean isSolved() {
