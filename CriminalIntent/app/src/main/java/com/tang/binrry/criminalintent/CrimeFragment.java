@@ -32,6 +32,7 @@ public class CrimeFragment extends Fragment {
     //Unit Eleven Challenge Begin
     private Button mbtn_to_first;
     private Button mbtn_to_last;
+
     //Unit Eleven Challenge End
 
     //Unit Ten Begin
@@ -131,7 +132,7 @@ public class CrimeFragment extends Fragment {
 
         //Unit Eleven Challenge Begin
         mbtn_to_first=(Button) v.findViewById(R.id.btn_to_first);
-        if(mCrime.getTitle().endsWith("#0"))
+        if(mCrime.getId().equals(CrimeListFragment.mcrime_num_first))
         {
             mbtn_to_first.setEnabled(false);
         }
@@ -145,18 +146,17 @@ public class CrimeFragment extends Fragment {
 
 
         mbtn_to_last=(Button) v.findViewById(R.id.btn_to_last);
-        if(mCrime.getTitle().endsWith("#99"))
+        if(mCrime.getId().equals(CrimeListFragment.mcrime_num_last))
         {
             mbtn_to_last.setEnabled(false);
         }
         mbtn_to_last.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=CrimePagerActivity.newIntent(getActivity(),CrimeLab.getUUID(99));
+                Intent intent=CrimePagerActivity.newIntent(getActivity(),CrimeLab.getUUID(CrimeListFragment.mcrime_num-1));
                 startActivity(intent);
             }
         });
-
         //Unit Eleven Challenge End
         return v;
     }

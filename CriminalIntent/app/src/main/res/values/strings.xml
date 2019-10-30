@@ -5,10 +5,17 @@
     <string name="crime_title_label">Title</string>
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved</string>
-    <string name="date_picker_title">Date of crime:</string>
-    <string name="time_picker_title">Time of crime:</string>
     <!--Unit Eleven Challenge Begin-->
     <string name="btn_tolast">ToLast</string>
     <string name="btn_tofirst">ToFirst</string>
+
+    <string name="date_picker_title">Date of crime:</string>
+    <string name="time_picker_title">Time of crime:</string>
+
+    <string name="new_crime">New Crime</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle_format">%1$d crimes</string>
    <!-- <string name=""></string>-->
+
 </resources>

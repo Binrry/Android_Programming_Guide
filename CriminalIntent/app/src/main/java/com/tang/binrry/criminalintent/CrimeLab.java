@@ -13,6 +13,7 @@ public class CrimeLab {
     private static UUID[] sUUIDS;
     //Unit Eleven Challenge End
     private List<Crime> mCrimes;
+    private int num=0;
 
     public static CrimeLab get(Context context) {
         if (sCrimeLab == null) {
@@ -30,10 +31,11 @@ public class CrimeLab {
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
         sUUIDS=new UUID[100];
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             Crime crime = new Crime();
             //Unit Eleven Challenge Begin
             sUUIDS[i]=crime.getId();
+            num=i;
             //Unit Eleven Challenge End
             crime.setTitle("Crime #" + i);
             crime.setSolved(i % 2 == 0);
@@ -42,6 +44,7 @@ public class CrimeLab {
             //Unit Eight Challenge End
             mCrimes.add(crime);
         }
+
     }
 
     public List<Crime> getCrimes() {
@@ -58,5 +61,17 @@ public class CrimeLab {
         return null;
     }
 
+    //Unit Thirteen Begin
+    public void addCrime(Crime c)
+    {
+        mCrimes.add(c);
+        num++;
+        sUUIDS[num]=c.getId();
+    }
 
+    public void deleteCrime(int position)
+    {
+        mCrimes.remove(position);
+        sUUIDS[position]= null;
+    }
 }
